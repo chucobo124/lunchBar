@@ -23,11 +23,11 @@ class ConcernTest < ActiveSupport::TestCase
     stub_request(:get, url)
       .with(headers: { 'User-Agent' => 'Ruby' })
       .to_return(status: 200, body: mock_body, headers: {})
-    @expected_data = {
+    expected_data = {
       userName: user_name,
       postId: post_id,
       createDate: createDate
     }
-    assert_equal(pixnet_parser(url), @expected_data, 'The parser should returns hash data')
+    assert_equal(pixnet_parser(url), expected_data, 'The parser should returns hash data')
   end
 end
