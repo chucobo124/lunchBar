@@ -17,7 +17,7 @@ module URIRecipes
   def pixnet_parser(uri)
     profile_message = {}
     uri = URI(uri)
-    pixnet_article = Nokogiri::HTML(Net::HTTP.get(uri))
+    pixnet_article = Nokogiri::HTML(Net::HTTP.get(uri).html_safe)
     profile_message[:userName] = uri.hostname.split('.')[0]
     profile_message[:postId] = uri.path.split('/').last
     profile_message[:createDate] =
