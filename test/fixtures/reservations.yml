@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: <%= Faker::Internet.user_name %>
+  domain: <%= Faker::Internet.domain_word %>
+  available: true
+
+two:
+  name: <%= Faker::Internet.user_name %>
+  domain: <%= Faker::Internet.domain_word %>
+  available: true
