@@ -1,9 +1,6 @@
 module URIRecipes
-  # URI Recipe is going to parse the uri to return the id and other profile in
-  # URI which is needed. The return type must be a hash.
-  extend ActiveSupport::Concern
-
-  # The goal of this concern to prvide the profile formate the sample is like:
+  # URI Recipe is going to parse the uri to return the profile message
+  # The profile format are like etc:
   # {
   #   userName: 'test123',
   #   postId: '098765323456789',
@@ -11,7 +8,9 @@ module URIRecipes
   #   otherMessage: <value>
   # }
 
-  # Return message to match the profile formate. Parsing by Nokogiri
+  extend ActiveSupport::Concern
+
+  # Return message to match the profile format. Parsing by Nokogiri
   #
   # @param [String] uri The user blog path
   # @return [Hash] profile message

@@ -6,7 +6,7 @@ class ConcernTest < ActiveSupport::TestCase
 
   # Test Pixnet parser
 
-  test 'should return pixnet message in URI params' do
+  test 'should return pixnet message with URI' do
     post_id = Faker::Number.number(10)
     user_name = Faker::Internet.user_name(nil, %w(_))
     url = "http://#{user_name}.pixnet.net/blog/post/#{post_id}"
@@ -23,11 +23,11 @@ class ConcernTest < ActiveSupport::TestCase
     stub_request(:get, url)
       .with(headers: { 'User-Agent' => 'Ruby' })
       .to_return(status: 200, body: mock_body, headers: {})
-    @expect_data = {
+    @expected_data = {
       userName: user_name,
       postId: post_id,
       createDate: createDate
     }
-    assert_equal(pixnet_parser(url), @expect_data, 'The parser should return hash data')
+    assert_equal(pixnet_parser(url), @expected_data, 'The parser should returns hash data')
   end
 end
