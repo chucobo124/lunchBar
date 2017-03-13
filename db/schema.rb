@@ -16,11 +16,12 @@ ActiveRecord::Schema.define(version: 20170307161337) do
   enable_extension "plpgsql"
 
   create_table "reservations", force: :cascade do |t|
-    t.string   "name"
-    t.string   "domain"
-    t.boolean  "available"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                           null: false
+    t.string   "domain",                         null: false
+    t.integer  "classification",                 null: false
+    t.boolean  "available",      default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end
