@@ -10,7 +10,8 @@ class ConcernTest < ActiveSupport::TestCase
     post_id = Faker::Number.number(10)
     user_name = Faker::Internet.user_name(nil, %w(_))
     url = "http://#{user_name}.pixnet.net/blog/post/#{post_id}"
-    createDate = Faker::Date.between(10.days.ago, Date.today)
+    createDate = Faker::Time.between(DateTime.now - 1000, DateTime.now)
+                            .beginning_of_minute
     mock_body = "<ul class=\"article-head\">
                   <li class=\"publish\">
                       <span class=\"month\">#{createDate.strftime('%b')}</span>
@@ -28,6 +29,14 @@ class ConcernTest < ActiveSupport::TestCase
       postId: post_id,
       createDate: createDate
     }
-    assert_equal(pixnet_parser(url), expected_data, 'The parser should returns hash data')
+    assert_equal(expected_data[:userName],
+                 pixnet_parser(url)[:userName],
+                 'The parser should returns hash data')
+    assert_equal(expected_data[:postId],
+                 pixnet_parser(url)[:postId],
+                 'The parser should returns hash data')
+    assert_equal(DateTime.parse(expected_data[:createDate].to_s),
+                 pixnet_parser(url)[:createDate],
+                 'The parser should returns hash data')
   end
 end
