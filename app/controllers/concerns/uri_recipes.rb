@@ -8,10 +8,8 @@ module URIRecipes
   #   redirect_path: https://www.example.com
   #   otherMessage: <value>
   # }
-
   extend ActiveSupport::Concern
-
-  # Return message to match the profile format. Parsing by Nokogiri
+  # Retrun pixnet user profile by pixnet path
   #
   # @param [String] uri The user blog path
   # @return [Hash] profile message
